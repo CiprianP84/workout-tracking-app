@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename= 'extended_beauty.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<style>
+  body { background-image: url(/static/images/NewWorkout.jpg); } 
+</style>
+
+<div class="col-md-4 col-md-offset-4">
+  <form method="POST" action="{{ url_for('main.update_workout', workout_id=workout.id) }}">
+    <h2>Update Workout</h2>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+      {{ messages[0] }}
+    </div>
+    {% endif %} {% endwith %}
+    <div class="signup">
+    <div class="form-group">
+        <label for="exercise">Exercise Type</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exercise"
+          name="exercise"
+          aria-describedby="exerciseHelp"
+          placeholder="Enter the exercise type"
+        />
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input
+          type="number"
+          class="form-control"
+          id="weight"
+          name="weight"
+          aria-describedby="weightHelp"
+          placeholder="Enter the weight"
+        />
+      </div>
+      <div class="form-group">
+        <label for="weight">Sets</label>
+        <input
+          type="number"
+          class="form-control"
+          id="sets"
+          name="sets"
+          aria-describedby="setsHelp"
+          placeholder="Enter the number of sets done"
+        />
+      </div>
+    <div class="form-group">
+      <label for="reps">Repetitions</label>
+      <input
+        type="number"
+        class="form-control"
+        id="reps"
+        name="reps"
+        aria-describedby="repsHelp"
+        placeholder="Enter number of repetitions done"
+      />
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <input
+        type="text"
+        class="form-control"
+        id="comment"
+        name="comment"
+        aria-describedby="repsHelp"
+        placeholder="any comments"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary" id="sbtn">Update Workout</button>
+  </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <title>Workout Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename= 'images/Logo.png') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'beauty.css') }}"
+    />
+
+    <link rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" 
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" 
+      crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+      crossorigin="anonymous">
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" 
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous">
+    </script>
+    
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+
+    {% endblock %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+      <img src="/static/images/logo.png" alt="gym logo" width="70" height="70">
+      <a class="navbar-brand" href="{{ url_for('main.index') }}">
+        Workout Tracker
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a
+              href="{{ url_for('main.user_workouts') }}"
+              class="btn btn-outline-secondary"
+              role="button"
+              >All Workouts</a>
+
+          </li>
+          <li class="nav-item">
+            <a
+              href="{{ url_for('main.profile') }}"
+              class="btn btn-outline-secondary"
+              role="button"
+              style="margin-left: 4px;"
+              >Account</a>
+          </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+          {% if current_user.is_authenticated%}
+          <a href="{{ url_for('main.new_workout') }}" class="btn btn-outline-primary" role="button">Add New Workout</a>
+          {% endif %} {% if not current_user.is_authenticated%}
+
+          <a
+            href="{{ url_for('auth.signup') }}"
+            class="btn btn-outline-primary"
+            role="button"
+            >Signup</a>
+
+          <a
+            href="{{ url_for('auth.login') }}"
+            class="btn btn-outline-primary"
+            role="button"
+            style="margin-left: 4px;"
+            >Login</a>
+            {% endif %} {% if current_user.is_authenticated%}
+
+            <a
+            href="{{ url_for('auth.logout') }}"
+            class="btn btn-outline-danger"
+            role="button"
+            style="margin-left: 4px;"
+            >Log Out</a>
+
+            {% endif %}
+
+        </form>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+  </body>
+</html>

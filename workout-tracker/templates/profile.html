@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+<link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'extended_beauty.css') }}"
+    />
+    {% endblock %}{% block content %}
+  <div class="profile">
+    <h1>
+      Hello, {{ name }}! 
+    </h1>
+      <p>
+        Enjoy your workout and keep track of your progress
+    </p>
+  </div>
+    <style>
+      body { background-image: url(/static/images/ProfilePic.jpg); }
+    </style>
+    {% endblock %}s

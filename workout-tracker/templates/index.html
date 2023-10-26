@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block head %} {{ super() }}
+<link
+      rel="stylesheet"
+      href="{{ url_for('static', filename= 'extended_beauty.css') }}"
+    />
+    {% endblock %} {% block content %} 
+<style>
+  body { background-image: url(/static/images/Gym.jpg);} 
+</style>
+<div class="text">
+  <h1> Welcome to the Workout Tracker!</h1>
+  <h3> Keep track of your progress and workout sessions</h3>
+</div>      
+<div class="CRUD">
+  <p>This website implements basic CRUD functionality and user authentification features using Flask and SQLite.</p>
+</div>
+    {% endblock %}
